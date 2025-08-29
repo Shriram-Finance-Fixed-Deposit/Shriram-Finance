@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shriram FD Lead Form</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #f8f9fa; 
+      text-align: center; 
+      padding: 20px; 
+    }
+    .form-container { 
+      max-width: 400px; 
+      margin: auto; 
+      background: white; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    }
+    input { 
+      width: 90%; 
+      padding: 10px; 
+      margin: 8px 0; 
+      border: 1px solid #ccc; 
+      border-radius: 5px; 
+    }
+    button { 
+      background: #007bff; 
+      color: white; 
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    }
+    button:hover { 
+      background: #0056b3; 
+    }
+    img { 
+      max-width: 200px; 
+      margin-bottom: 20px; 
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <img src="shriram-finance-logo.png" alt="Shriram Finance Logo">
+
+  <h2>Fill Your Details to Proceed with Shriram FD</h2>
+  <div class="form-container">
+    <form id="leadForm">
+      <input type="text" name="name" placeholder="Enter your name" required><br>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required><br>
+      <input type="email" name="email" placeholder="Enter your email"><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbznm-d0ynE7do42s23FmsFI7s7pO7R0LjQvMjdAx5Fx3qcpe1PWiHE7SF_65pt4bh_4/exec";
+    document.getElementById("leadForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const formData = {
+        name: e.target.name.value,
+        phone: e.target.phone.value,
+        email: e.target.email.value || ""  // make optional
+      };
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(formData)
+      }).then(() => {
+        // Redirect after saving
+        window.location.href = "https://www.shriramfinance.in/fixed-deposit";
+      }).catch(err => alert("Error: " + err));
+    });
+  </script>
+
+</body>
+</html>
