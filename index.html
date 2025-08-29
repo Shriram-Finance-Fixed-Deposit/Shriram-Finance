@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shriram Finance Fixed Deposit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Shriram Logo -->
+    <img src="shriram-finance-logo.png" alt="Shriram Finance Logo">
+
+    <h2>Fixed Deposit Form</h2>
+    <form id="fdForm">
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Email (Optional)">
+      <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzEu-ockrg2mkCFe4Q71R9YYGWi69IGBjvi6SLpwWdznYYrN2IIXK5EcU378n95mSK-/exec";
+    const REDIRECT_URL = "https://www.shriramfinance.in/fixed-deposit-online?https:%2F%2Fwww.shriramfinance.in%2Ffixed-deposit-online=&utm_source=bing&utm_medium=cpc&utm_content=bing_rlsa&utm_campaign=fd_bing_cpc_web_cv_100725_sfl_in_sr-rlsa-new-fdonline_83357161984985_en&campaignid=570027442&location=150073&utm_id=570027442&intlocation=&targetid=kwd-83358065528172:aud-814777908:loc-90&keyword=shriram%20finance%20fixed%20deposit&device=c&placement=&term=e_shriram%20finance%20fixed%20deposit&network=o&msclkid=89b8253c11f714c9019d4d8db185a0da";
+
+    document.getElementById("fdForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value || ""; 
+      const phone = document.getElementById("phone").value;
+
+      try {
+        const response = await fetch(WEB_APP_URL, {
+          method: "POST",
+          body: JSON.stringify({ name, email, phone }),
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          }
+        });
+
+        if (response.ok) {
+          alert("Form submitted successfully!");
+          window.location.href = REDIRECT_URL;
+        } else {
+          alert("Error submitting form.");
+        }
+      } catch (error) {
+        alert("Error submitting form: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
